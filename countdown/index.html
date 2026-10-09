@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage Countdown — SBG Event Toolkit</title>
+    <meta name="description" content="Herramienta de cuenta regresiva en escenario de alta precisión para eventos y conferencias.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stage-container">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <button id="open-panel-btn" class="settings-btn" aria-label="Abrir configuración" title="Configuración">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.59-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.93l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.2-1.17.53-1.69.93l-2.49-1c-.2-.08-.47 0-.59.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.59.22l2.49-1c.52.4 1.08.73 1.69.93l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.2 1.17-.53 1.69-.93l2.49 1c.2.08.47 0 .59-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65z"></path>
+                </svg>
+            </button>
+            <div class="top-logos">
+                <div class="logo-container" id="top-left-logo"></div>
+                <div class="logo-container" id="top-right-logo"></div>
+            </div>
+            <button id="fullscreen-btn" class="fullscreen-btn" aria-label="Pantalla completa" title="Pantalla completa">⛶</button>
+        </header>
+
+        <!-- Main Clock -->
+        <main class="main-display">
+            <div class="clock-wrapper">
+                <div class="clock-display" id="countdown">05:00</div>
+            </div>
+        </main>
+
+        <!-- Bottom Bar -->
+        <footer class="bottom-section">
+            <div class="bottom-logos">
+                <div class="logo-container" id="bottom-left-logo"></div>
+                <div class="logo-container" id="bottom-right-logo"></div>
+            </div>
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+            <div class="ticker-wrap">
+                <div id="ticker" class="ticker">BIENVENIDOS AL EVENTO • STAGE COUNTDOWN TOOLKIT • </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Panel de Configuración -->
+    <aside id="settings-modal" class="settings-modal" aria-label="Panel de configuración">
+        <div class="modal-header">
+            <h2>Configuración</h2>
+            <button id="close-modal" class="close-modal-btn" aria-label="Cerrar panel">✕</button>
+        </div>
+
+        <section class="control-section">
+            <h3 class="section-title">Temporizador</h3>
+            <div class="form-group">
+                <label for="initial-minutes" class="form-label">Minutos</label>
+                <input type="number" id="initial-minutes" value="5" min="1" max="120" class="input-field">
+            </div>
+            <div class="button-group">
+                <button id="start-btn" class="btn-primary">INICIAR</button>
+                <button id="pause-btn" class="btn-secondary">PAUSAR</button>
+                <button id="reset-btn" class="btn-secondary">REINICIAR</button>
+            </div>
+            <div class="quick-controls">
+                <button id="add-minute" class="btn-quick">+1 MIN</button>
+                <button id="sub-minute" class="btn-quick">-1 MIN</button>
+            </div>
+        </section>
+
+        <section class="control-section audio-section">
+            <h3 class="section-title">Audio Ambiente</h3>
+            <div class="file-upload-group">
+                <label for="audio-upload" class="file-btn">📁 SUBIR AUDIO</label>
+                <input type="file" id="audio-upload" accept="audio/*" class="hidden-input">
+            </div>
+            <div class="slider-group">
+                <label for="volume-slider" class="form-label">Volumen <span id="volume-value" class="value-display">70%</span></label>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.7" class="volume-slider">
+            </div>
+            <label class="checkbox-label">
+                <input type="checkbox" id="loop-checkbox" checked>
+                <span>Reproducir en bucle</span>
+            </label>
+            <div class="audio-actions">
+                <button id="play-audio-btn" class="btn-secondary">▶ PROBAR</button>
+                <button id="stop-audio-btn" class="btn-secondary">⏹ DETENER</button>
+            </div>
+        </section>
+
+        <section class="control-section">
+            <h3 class="section-title">Personalización</h3>
+            <div class="form-group">
+                <label for="ticker-text" class="form-label">Texto del Ticker</label>
+                <div class="ticker-input-group">
+                    <input type="text" id="ticker-text" value="BIENVENIDOS AL EVENTO • STAGE COUNTDOWN TOOLKIT" class="input-field">
+                    <button id="update-ticker-btn" class="btn-secondary small">ACTUALIZAR</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Logos de Patrocinadores</label>
+                <div class="logo-upload-group">
+                    <label for="logo-upload" class="file-btn">📸 SELECCIONAR LOGO</label>
+                    <input type="file" id="logo-upload" accept="image/*" class="hidden-input">
+                    <select id="logo-position" class="select-field">
+                        <option value="top-left">↖ Arriba Izquierda</option>
+                        <option value="top-right">↗ Arriba Derecha</option>
+                        <option value="bottom-left">↙ Abajo Izquierda</option>
+                        <option value="bottom-right" selected>↘ Abajo Derecha</option>
+                    </select>
+                    <div class="logo-actions-group">
+                        <button id="add-logo-btn" class="btn-secondary small">INSERTAR</button>
+                        <button id="remove-logo-btn" class="btn-clear small logo-btn-clear">QUITAR</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="modal-footer">
+            <button id="clear-storage" class="btn-clear">Restablecer Configuración</button>
+            <p class="hint">Espacio: Iniciar/Pausar • Esc: Cerrar panel</p>
+        </div>
+    </aside>
+
+    <script src="script.js"></script>
+</body>
+</html>
