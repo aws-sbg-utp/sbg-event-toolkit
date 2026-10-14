@@ -73,18 +73,17 @@ python3 -m http.server 8000
 
 ---
 
-## Adding New Tools
+---
 
-To add a new tool to the toolkit:
+## Architecture & Agent Context
 
-1. Create a dedicated folder at the root level (e.g., `roulette/`).
-2. Keep the module self-contained using native HTML, CSS, and JavaScript.
-3. Adhere to the existing design tokens:
-   - Primary surfaces: `#0B0F19` and `#161D26`
-   - Brand accents: `#FF9900` (AWS Orange) and `#38BDF8` (Tech Blue)
-   - Status indicators: `#10B981` (Success / Alarm)
-   - Typography: Clean sans-serif with tabular figures for metrics
-4. Document the module's usage in this README.
+This repository is designed to be **AI-Ready / Agent-First**. Detailed technical specifications and guidelines are available in:
+
+- [**AGENTS.md**](./AGENTS.md) — Master context entry point, golden rules, and constraints for AI coding agents.
+- [**Architecture & Monorepo**](./docs/architecture.md) — Isolation rules, memory management, drift-free timers, and storage policies.
+- [**Design System**](./docs/design-system.md) — Stage Dark Mode, canonical CSS tokens, the Anti-Neon rule, and UI components.
+- [**Module Blueprint**](./docs/module-blueprint.md) — Structural template (HTML/CSS/JS) to build new tools in minutes.
+- [**Roadmap**](./docs/roadmap.md) — Evolution, upcoming tools (Launchpad, Roulette), and commit conventions.
 
 ---
 
