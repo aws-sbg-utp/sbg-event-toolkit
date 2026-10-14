@@ -1,3 +1,98 @@
+/* ==============================================================
+   1. MOTOR DE PARTÍCULAS (CANVAS)
+   ============================================================== */
+const canvas = document.getElementById('fx-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+class Particle {
+    constructor(isBurst = false) {
+        this.isBurst = isBurst;
+        if (isBurst) {
+            // Partículas de explosión verde (cuando termina el tiempo)
+            this.x = canvas.width / 2;
+            this.y = canvas.height / 2;
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 15 + 5;
+            this.vx = Math.cos(angle) * speed;
+            this.vy = Math.sin(angle) * speed;
+            this.color = '#10B981'; // Emerald Green
+            this.radius = Math.random() * 5 + 2;
+            this.life = 1.0;
+            this.decay = Math.random() * 0.02 + 0.01;
+        } else {
+            // Partículas ambientales (Naranja AWS y Azul Tech)
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.5;
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.color = Math.random() > 0.5 ? '#FF9900' : '#38BDF8';
+            this.radius = Math.random() * 2 + 1;
+            this.life = Infinity;
+        }
+    }
+    update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.isBurst) {
+            this.life -= this.decay;
+        } else {
+            // Rebotar o reaparecer bordes para las ambientales
+            if (this.x < 0) this.x = canvas.width;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.y < 0) this.y = canvas.height;
+            if (this.y > canvas.height) this.y = 0;
+        }
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = this.isBurst ? 15 : 5;
+        ctx.shadowColor = this.color;
+        ctx.globalAlpha = this.isBurst ? Math.max(0, this.life) : 0.3;
+        ctx.fill();
+    }
+}
+
+function initAmbientParticles() {
+    particles = [];
+    for (let i = 0; i < 50; i++) particles.push(new Particle(false));
+}
+
+function triggerCanvasExplosion() {
+    particles = []; // Limpia las ambientales
+    for (let i = 0; i < 150; i++) particles.push(new Particle(true));
+}
+
+function animateCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.update();
+        p.draw();
+        // Eliminar partículas muertas de la explosión
+        if (p.isBurst && p.life <= 0) particles.splice(i, 1);
+    }
+    ctx.globalAlpha = 1.0;
+    ctx.shadowBlur = 0;
+    requestAnimationFrame(animateCanvas);
+}
+
+initAmbientParticles();
+animateCanvas();
+
+
+/* ==============================================================
+   2. LÓGICA DEL CONTADOR (JS PROPORCIONADO)
+   ============================================================== */
 let countdownInterval = null;
 let totalSeconds = 300;
 let remainingSeconds = 300;
@@ -154,6 +249,7 @@ function startCountdown() {
 
     if (remainingSeconds <= 0) {
         remainingSeconds = totalSeconds;
+        initAmbientParticles(); // Restablece partículas en reinicio
     }
 
     targetEndTime = Date.now() + (remainingSeconds * 1000);
@@ -213,6 +309,8 @@ function resetCountdown() {
     remainingSeconds = totalSeconds;
     alarmTriggered = false;
     countdownEl.classList.remove('alarm');
+    
+    initAmbientParticles(); // Restablece partículas
 
     if (audio && !audio.paused) {
         fadeOutAudio();
@@ -232,6 +330,9 @@ function handleTimeUp() {
     remainingSeconds = 0;
     alarmTriggered = true;
     countdownEl.classList.add('alarm');
+    
+    triggerCanvasExplosion(); // Efecto de Canvas disparado
+
     updateDisplay();
 
     if (audio) {
@@ -255,6 +356,7 @@ function addMinute() {
     if (remainingSeconds > 10) {
         alarmTriggered = false;
         countdownEl.classList.remove('alarm');
+        initAmbientParticles(); // Vuelve al ambiente
     }
 
     updateDisplay();
