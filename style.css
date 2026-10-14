@@ -1,0 +1,606 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+    /* === Fondos y Superficies === */
+    --bg-main: #0B0F19;
+    --bg-secondary: #161D26;
+    --bg-panel: rgba(16, 23, 38, 0.88);
+    --bg-card: rgba(22, 29, 38, 0.65);
+    --bg-card-hover: rgba(27, 36, 48, 0.8);
+    --bg-input: rgba(11, 15, 25, 0.65);
+
+    /* === Tipografía y Textos === */
+    --text-primary: #FFFFFF;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+
+    /* === Identidad AWS Orange === */
+    --aws-orange: #FF9900;
+    --aws-orange-hover: #FFA826;
+    --aws-orange-soft: rgba(255, 153, 0, 0.12);
+    --aws-orange-glow: rgba(255, 153, 0, 0.22);
+
+    /* === Identidad Tech Blue === */
+    --tech-blue: #38BDF8;
+    --tech-blue-soft: rgba(56, 189, 248, 0.10);
+    --tech-blue-glow: rgba(56, 189, 248, 0.18);
+
+    /* === Estados: Verde Esmeralda y Peligro === */
+    --emerald-green: #10B981;
+    --emerald-soft: rgba(16, 185, 129, 0.12);
+    --emerald-glow: rgba(16, 185, 129, 0.25);
+    --amber-warning: #F59E0B;
+    --amber-soft: rgba(245, 158, 11, 0.12);
+    --danger-red: #F87171;
+    --danger-soft: rgba(248, 113, 113, 0.12);
+
+    /* === Cristales y Bordes (Glassmorphism) === */
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --border-glass-hover: rgba(255, 255, 255, 0.18);
+    --border-accent: rgba(56, 189, 248, 0.25);
+
+    /* === Radios de Curvatura === */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-full: 9999px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main);
+    background-image: 
+        radial-gradient(circle at 50% 0%, #161D26 0%, transparent 60%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 100% 100%, 32px 32px, 32px 32px;
+    background-position: top center;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* === Contenedor Principal === */
+.launchpad-container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+/* === Header Superior: Operator Status Bar === */
+.operator-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--border-glass);
+    margin-bottom: 40px;
+}
+
+.brand-identity {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 650px;
+}
+
+.community-badge {
+    align-self: flex-start;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: var(--aws-orange);
+    background: var(--aws-orange-soft);
+    border: 1px solid rgba(255, 153, 0, 0.25);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    letter-spacing: 1.5px;
+}
+
+.main-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    color: var(--text-primary);
+}
+
+.main-subtitle {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* === Panel de Diagnóstico Técnico === */
+.diag-panel {
+    display: flex;
+    gap: 16px;
+    background: var(--bg-panel);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-md);
+    padding: 12px 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    flex-shrink: 0;
+}
+
+.diag-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 0 10px;
+    border-right: 1px solid var(--border-glass);
+}
+
+.diag-item:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+.diag-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.diag-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--tech-blue);
+    font-variant-numeric: tabular-nums;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    display: inline-block;
+}
+
+.dot-online {
+    background-color: var(--emerald-green);
+    box-shadow: 0 0 8px var(--emerald-glow);
+    animation: pulseDot 2s infinite ease-in-out;
+}
+
+.dot-offline {
+    background-color: var(--amber-warning);
+    box-shadow: 0 0 8px var(--amber-soft);
+}
+
+@keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.55; transform: scale(0.85); }
+}
+
+/* === Main Grid Section === */
+.tools-grid-section {
+    flex: 1;
+    margin-bottom: 40px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 24px;
+}
+
+/* === Tarjetas de Herramientas (Glassmorphism) === */
+.tool-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-card.card-active:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-glass-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+
+.tool-card.card-disabled {
+    opacity: 0.65;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    transition: all 0.25s ease;
+}
+
+.card-active .card-icon {
+    color: var(--aws-orange);
+    border-color: rgba(255, 153, 0, 0.25);
+    background: var(--aws-orange-soft);
+}
+
+.card-active:hover .card-icon {
+    transform: scale(1.05);
+    box-shadow: 0 0 16px var(--aws-orange-soft);
+}
+
+/* === Badges de Estado === */
+.badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.75px;
+    text-transform: uppercase;
+}
+
+.badge-prod {
+    color: var(--emerald-green);
+    background: var(--emerald-soft);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.badge-dev {
+    color: var(--tech-blue);
+    background: var(--tech-blue-soft);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.badge-plan {
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+}
+
+/* === Contenido de la Tarjeta === */
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+.card-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+}
+
+.card-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 16px;
+    flex: 1;
+}
+
+/* Indicador dinámico de estado guardado en storage */
+.stored-state-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--tech-blue);
+    background: var(--tech-blue-soft);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 16px;
+    align-self: flex-start;
+}
+
+.state-dot {
+    font-size: 0.65rem;
+    color: var(--tech-blue);
+}
+
+/* === Pills Técnicas === */
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-glass);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+}
+
+/* === Acciones de la Tarjeta === */
+.card-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.card-btn-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--aws-orange);
+    color: #0B0F19;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 12px 18px;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    box-shadow: 0 4px 14px var(--aws-orange-glow);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+    background: var(--aws-orange-hover);
+    box-shadow: 0 6px 20px rgba(255, 153, 0, 0.35);
+    transform: translateY(-1px);
+}
+
+.hotkey-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    color: #0B0F19;
+}
+
+.btn-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-glass);
+    color: var(--text-secondary);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.btn-icon:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--border-glass-hover);
+    transform: translateY(-1px);
+}
+
+.btn-disabled {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-muted);
+    border: 1px solid var(--border-glass);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    cursor: not-allowed;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* === Barra de Utilidades del Operador === */
+.operator-utilities {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-md);
+    padding: 14px 22px;
+    margin-bottom: 32px;
+}
+
+.utilities-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.utilities-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.utilities-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-quick-util {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-glass);
+    color: var(--text-secondary);
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-quick-util:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--text-primary);
+    border-color: var(--border-glass-hover);
+}
+
+.btn-danger-action:hover {
+    background: var(--danger-soft);
+    color: var(--danger-red);
+    border-color: rgba(248, 113, 113, 0.3);
+}
+
+.btn-icon-glyph {
+    font-size: 0.95rem;
+}
+
+/* === Footer === */
+.launchpad-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-glass);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.footer-shortcuts {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hotkey-pill {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    padding: 2px 7px;
+    border-radius: var(--radius-sm);
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.footer-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-separator {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: var(--tech-blue);
+}
+
+/* === Adaptabilidad Responsiva === */
+@media (max-width: 900px) {
+    .operator-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .diag-panel {
+        justify-content: space-between;
+    }
+
+    .utilities-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 600px) {
+    .launchpad-container {
+        padding: 28px 18px;
+    }
+
+    .main-title {
+        font-size: 1.75rem;
+    }
+
+    .diag-panel {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .diag-item {
+        border-right: none;
+        border-bottom: 1px solid var(--border-glass);
+        padding-bottom: 8px;
+        padding-left: 0;
+    }
+
+    .diag-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+}

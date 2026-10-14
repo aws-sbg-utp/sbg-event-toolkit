@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control — SBG Event Toolkit</title>
+    <meta name="description" content="Consola de mando y suite de herramientas web para escenario, transmisiones en vivo y talleres técnicos del AWS Student Builder Group (UTP).">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="launchpad-container">
+        <!-- Header: Barra de Estado del Operador -->
+        <header class="operator-bar">
+            <div class="brand-identity">
+                <span class="community-badge">AWS STUDENT BUILDER GROUP • UTP</span>
+                <h1 class="main-title">SBG Event Toolkit</h1>
+                <p class="main-subtitle">Suite de herramientas web zero-dependency para escenario, streaming y eventos técnicos en vivo.</p>
+            </div>
+
+            <!-- Panel de Diagnóstico en Tiempo Real -->
+            <div class="diag-panel" aria-label="Diagnóstico técnico del sistema">
+                <div class="diag-item">
+                    <span class="diag-label">VIEWPORT</span>
+                    <span id="diag-resolution" class="diag-value">----×----</span>
+                </div>
+                <div class="diag-item">
+                    <span class="diag-label">ESTADO RED</span>
+                    <span id="diag-network" class="diag-value">
+                        <span class="status-dot dot-online"></span> ONLINE
+                    </span>
+                </div>
+                <div class="diag-item">
+                    <span class="diag-label">STORAGE</span>
+                    <span id="diag-storage" class="diag-value">Activo</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Cuadrícula Principal de Herramientas -->
+        <main class="tools-grid-section">
+            <div class="tools-grid">
+
+                <!-- Tarjeta 1: Stage Countdown (ACTIVA) -->
+                <article class="tool-card card-active" id="card-countdown">
+                    <div class="card-header">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="13" r="8"></circle>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="13" x2="15" y2="13"></line>
+                                <line x1="12" y1="1" x2="12" y2="5"></line>
+                            </svg>
+                        </div>
+                        <span class="badge badge-prod">PRODUCTION</span>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="card-title">Stage Countdown</h2>
+                        <p class="card-description">
+                            Temporizador de alta precisión libre de desfase con soporte para audio ambiental local, barra de progreso, cinta de anuncios (ticker) y logos de patrocinadores.
+                        </p>
+
+                        <!-- Indicador dinámico de configuración previa guardada -->
+                        <div id="countdown-stored-badge" class="stored-state-badge" style="display: none;">
+                            <span class="state-dot">●</span> <span id="countdown-stored-text">Configuración previa detectada</span>
+                        </div>
+
+                        <div class="tech-tags">
+                            <span class="tag-pill">Drift-Free Engine</span>
+                            <span class="tag-pill">Web Audio</span>
+                            <span class="tag-pill">Hotkeys</span>
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <a href="./countdown/index.html" class="btn-primary card-btn-main" title="Abrir en esta pestaña">
+                            <span>ABRIR HERRAMIENTA</span>
+                            <span class="hotkey-badge">[1]</span>
+                        </a>
+                        <a href="./countdown/index.html" target="_blank" rel="noopener noreferrer" class="btn-icon" title="Abrir en nueva pestaña" aria-label="Abrir Stage Countdown en nueva pestaña">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 2: Swag Roulette (EN DESARROLLO) -->
+                <article class="tool-card card-disabled" id="card-roulette">
+                    <div class="card-header">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polygon points="12 6 15 11 20 11 16 14 18 19 12 16 6 19 8 14 4 11 9 11 12 6"></polygon>
+                            </svg>
+                        </div>
+                        <span class="badge badge-dev">IN DEVELOPMENT</span>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="card-title">Swag Roulette</h2>
+                        <p class="card-description">
+                            Ruleta interactiva basada en HTML5 Canvas y físicas suaves para sorteos de swag en vivo, carga rápida de listas de asistentes y exclusión automática de ganadores.
+                        </p>
+
+                        <div class="tech-tags">
+                            <span class="tag-pill">HTML5 Canvas</span>
+                            <span class="tag-pill">CSV / Text Import</span>
+                            <span class="tag-pill">Offline State</span>
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <button class="btn-disabled card-btn-main" disabled aria-disabled="true">
+                            <span>PRÓXIMAMENTE</span>
+                        </button>
+                    </div>
+                </article>
+
+                <!-- Tarjeta 3: Stage Banner & Badge Studio (PLANEADO) -->
+                <article class="tool-card card-disabled" id="card-studio">
+                    <div class="card-header">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                        </div>
+                        <span class="badge badge-plan">PLANNED</span>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="card-title">Stage Banner & Badge Studio</h2>
+                        <p class="card-description">
+                            Editor visual con plantillas predefinidas de la comunidad para generar overlays de transmisión, anuncios rápidos de speakers y credenciales de taller en segundos.
+                        </p>
+
+                        <div class="tech-tags">
+                            <span class="tag-pill">Canvas Export</span>
+                            <span class="tag-pill">Preset Templates</span>
+                            <span class="tag-pill">Zero-Backend</span>
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <button class="btn-disabled card-btn-main" disabled aria-disabled="true">
+                            <span>PLANEADO</span>
+                        </button>
+                    </div>
+                </article>
+
+            </div>
+        </main>
+
+        <!-- Barra de Utilidades Rápidas para el Operador -->
+        <section class="operator-utilities">
+            <div class="utilities-wrapper">
+                <span class="utilities-title">UTILIDADES DE ESCENARIO:</span>
+                <div class="utilities-buttons">
+                    <button id="fullscreen-btn" class="btn-quick-util" title="Probar el modo pantalla completa en el proyector">
+                        <span class="btn-icon-glyph">⛶</span> Probar Pantalla Completa
+                    </button>
+                    <button id="clear-cache-btn" class="btn-quick-util btn-danger-action" title="Eliminar configuraciones almacenadas en este navegador">
+                        <span class="btn-icon-glyph">🗑️</span> Limpiar Caché Global
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="launchpad-footer">
+            <div class="footer-shortcuts">
+                <span class="hotkey-pill">1</span> Lanzar Stage Countdown &nbsp;•&nbsp; 
+                <span class="hotkey-pill">F</span> Alternar Pantalla Completa
+            </div>
+            <div class="footer-meta">
+                <span>Desarrollado para eventos por el <strong>AWS Student Builder Group (UTP)</strong></span>
+                <span class="footer-separator">•</span>
+                <a href="https://github.com/aws-sbg-utp/sbg-event-toolkit" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub Repository</a>
+                <span class="footer-separator">•</span>
+                <a href="./LICENSE" class="footer-link">Licencia MIT</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

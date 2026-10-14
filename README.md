@@ -22,8 +22,40 @@ Each tool in this repository is designed to run directly in the browser during l
 
 | Module | Directory | Status | Purpose |
 | :--- | :--- | :--- | :--- |
-| **Stage Countdown** | [`countdown/`](./countdown/) | Production | Fullscreen pre-session countdown timer with background audio, marquee ticker, and sponsor logo integration. |
-| **Swag Roulette** | `roulette/` | Planned | Interactive wheel for live attendee giveaways and swag distribution. |
+| **Mission Control (Hub)** | [`index.html`](./index.html) | Production | Operator launchpad with live stage diagnostics (viewport, network, storage) and decoupled tool launcher. |
+| **Stage Countdown** | [`countdown/`](./countdown/) | Production | Fullscreen pre-session countdown timer with canvas particles, background audio, marquee ticker, and sponsor logos. |
+| **Swag Roulette** | `roulette/` | Queued | Interactive canvas wheel for live attendee giveaways and swag distribution. |
+| **Stage Studio** | `studio/` | Planned | Live banner, badge, and overlay generator for workshops and streams. |
+
+---
+
+## Getting Started
+
+Clone the repository and open the Mission Control Launchpad directly in your browser:
+
+```bash
+git clone https://github.com/aws-sbg-utp/sbg-event-toolkit.git
+cd sbg-event-toolkit
+```
+
+To launch Mission Control:
+
+```bash
+# Linux
+xdg-open index.html
+
+# macOS
+open index.html
+
+# Windows
+start index.html
+```
+
+You can also launch any tool directly (e.g., `countdown/index.html`) or serve the repository with any static HTTP server:
+
+```bash
+python3 -m http.server 8000
+```
 
 ---
 
@@ -32,6 +64,7 @@ Each tool in this repository is designed to run directly in the browser during l
 A stage display timer intended to be shown on main auditorium displays before keynotes and during session breaks.
 
 ### Key Features
+- **Canvas Particle Engine:** Ambient floating particles with victory burst explosion when countdown reaches zero.
 - **Drift-free timing engine:** Calculated against real timestamps (`Date.now()`) to ensure second-level accuracy across pauses, resumes, and on-the-fly minute adjustments.
 - **Ambient audio support:** Load local audio files with automated fade-in on start and fade-out on pause or expiration.
 - **Sponsor branding:** Place and persist sponsor logos across all four screen corners via `localStorage`.
@@ -40,38 +73,6 @@ A stage display timer intended to be shown on main auditorium displays before ke
   - `Space` — Start / Pause countdown
   - `Esc` — Open / Close settings panel
   - `Fullscreen button` — Native fullscreen toggle
-
----
-
-## Getting Started
-
-Clone the repository and open the desired tool directly in your browser:
-
-```bash
-git clone https://github.com/aws-sbg-utp/sbg-event-toolkit.git
-cd sbg-event-toolkit
-```
-
-To run the countdown timer:
-
-```bash
-# Linux
-xdg-open countdown/index.html
-
-# macOS
-open countdown/index.html
-
-# Windows
-start countdown/index.html
-```
-
-Or serve the directory using any basic HTTP server:
-
-```bash
-python3 -m http.server 8000
-```
-
----
 
 ---
 

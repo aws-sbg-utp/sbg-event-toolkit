@@ -8,25 +8,23 @@ Este documento mantiene el estado de desarrollo, la visión y la hoja de ruta de
 
 | Módulo | Directorio | Versión | Estado | Descripción Funcional |
 | :--- | :--- | :--- | :--- | :--- |
+| **Mission Control (Hub)** | [`/index.html`](../index.html) | `v1.0` | **Producción** | Panel de inicio central ("Launchpad") con diagnóstico técnico de escenario en tiempo real (viewport, red, storage), atajos de teclado y navegación desacoplada sin `<iframe>`. |
 | **Stage Countdown** | [`countdown/`](../countdown/) | `v1.1` | **Producción** | Temporizador de escenario de alta precisión (*drift-free*), audio ambiental con fade suave, personalización de ticker/logos y motor de partículas Canvas (ambientales + explosión esmeralda). |
-| **Mission Control (Hub)** | `/index.html` | `v0.1` | **En Cola (Siguiente)** | Panel de inicio central ("Launchpad") para navegar y lanzar las herramientas en pestañas independientes sin uso de `<iframe>`. |
-| **Swag Roulette** | `roulette/` | `v0.0` | **Planificado** | Ruleta interactiva para sorteos de swag, con carga de listas de candidatos, desaceleración física, sonido de clics y confeti de victoria. |
-| **Badge Editor** | `badge-editor/` | `v0.0` | **Planificado** | Generador de credenciales de taller y avatares para asistentes a eventos de AWS SBG, con exportación en PNG/SVG local. |
+| **Swag Roulette** | `roulette/` | `v0.0` | **En Cola (Siguiente)** | Ruleta interactiva para sorteos de swag, con carga de listas de candidatos, desaceleración física, sonido de clics y confeti de victoria. |
+| **Stage Studio** | `studio/` | `v0.0` | **Planificado** | Generador de banners, overlays de transmisión y credenciales para workshops con plantillas de AWS SBG y exportación local en PNG. |
 
 ---
 
 ## 2. Hoja de Ruta de Módulos (Detalle Técnico)
 
-### Hito Inmediato: Mission Control (`/index.html`)
-- **Objetivo:** Transformar la raíz del repositorio en un lanzador visual premium.
-- **Características requeridas:**
-  - Vista en cuadrícula (*grid*) con tarjetas glassmorphic para cada módulo disponible.
-  - Indicador de estado por herramienta (ej. "Listo para usar", "Próximamente").
-  - Lanzamiento en nueva pestaña limpia (`target="_blank"`) para preservar pantalla completa y atajos.
-  - Vista previa interactiva o capturas estáticas optimizadas.
-  - Atajos de teclado para selección rápida (ej. números `1`, `2` para abrir herramientas).
-
-### Siguiente Hito: Swag Roulette (`roulette/`)
+### Siguiente Hito Inmediato: Swag Roulette (`roulette/`)
+- **Objetivo:** Herramienta interactiva para sorteo de regalos y licencias de AWS en vivo.
+- **Características técnicas:**
+  - Renderizado en `<canvas>` nativo con soporte High-DPI (`window.devicePixelRatio`).
+  - Motor de física angular con desaceleración elástica.
+  - Área de texto para pegar lista de participantes o correos.
+  - Almacenamiento con prefijo `sbg_roulette_candidates`.
+  - Audio sintetizado con Web Audio API o archivos locales de clics y fanfarria.
 - **Objetivo:** Herramienta interactiva para sorteo de regalos y licencias de AWS en vivo.
 - **Características técnicas:**
   - Renderizado en `<canvas>` nativo con soporte High-DPI (`window.devicePixelRatio`).
